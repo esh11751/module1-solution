@@ -3,28 +3,50 @@
 
   angular.module("LunchCheckApp", [] )
   .controller("LunchCheckController", function ($scope) {
-    $scope.lunchlist = "";
+    $scope.lunchlist;
     $scope.checkStatusVal = "";
-    $scope.checkListItems= fucntion (){
+    $scope.checkListItems = function () {
       var msg  = getcheckmessage($scope.lunchlist);
       $scope.checkStatusVal = msg;
     };
 
-    fucntion getcheckmessage(splitstring){
+    function getcheckmessage(string) {
       var finalmsg = "Please enter data first";
-      var splitlist = splitstring.split(',');
+      var splitlist = string.split(',');
+      var numofitems=0;
+      var i;
+      for (i=0; i < splitlist.length; i++){
 
-      if( splitlist.length==0 || splitstring="" ){
+        if( splitlist[i] !=" " && splitlist[i] !=null && splitlist[i].trim() !=""  ){
+            numofitems+=1;
+        }
+      //alert("Num of items are"+numofitems);
+      }
+
+
+
+
+    //  alert(splitlist);
+      //alert(""+string.trim().length+"num of items in is "+splitlist.length);
+
+      if( numofitems==0 || string == "" || string.trim().length == 0){
+      //  alert("null vlaue/blank");
         finalmsg = "Please enter data first"
       }
-      if( splitlist.length<=3){
+      if( numofitems!=0 && numofitems <=3 ){ //splitlist.length <= 3 && string.trim().length != 0 && splitlist !=""
         finalmsg = "Enjoy!";
       }
-      if(splitlist.length>3){
+      if( numofitems!=0 &&  numofitems > 3 ){ //&& string.trim().length != 0 && splitlist !=""
         finalmsg = "Too much!";
       }
-      return finalmsg;
-    }
 
-  });
+      return finalmsg;
+    };
+
+
+
+
+
+
+    });
 })();
