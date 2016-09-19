@@ -2,10 +2,10 @@
   "use strict";
 
   angular.module("LunchCheckApp", [] )
-  .controller("LunchCheckController", function ($scope) {
-//.controller("LunchCheckController", LunchCheckController);
-//LunchCheckController.$inject = ['$scope'];
-//funtion LunchCheckController($scope) {
+  //.controller("LunchCheckController", function ($scope) {
+.controller("LunchCheckController", LunchCheckController);
+LunchCheckController.$inject = ['$scope'];
+function LunchCheckController( $scope ) {
   //.controller("LunchCheckController", function ($scope) {
     $scope.lunchlist;
     $scope.checkStatusVal = "";
@@ -47,10 +47,6 @@
       return finalmsg;
     };
 
+  }//);
 
-
-
-
-
-    });
 })();
